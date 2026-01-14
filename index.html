@@ -1,682 +1,165 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="إبرة وفن - منصتك العربية المتكاملة لتعليم الخياطة والتفصيل من البداية حتى الاحتراف">
-    <meta name="keywords" content="تعليم الخياطة, تفصيل, باترونات, دروس خياطة عربية">
-    <title>إبرة وفن - تعلمي فن الخياطة والتفصيل</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #fafafa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-            animation: fadeIn 0.5s;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        header {
-            background: linear-gradient(135deg, #d4a5a5 0%, #e8c1c1 100%);
-            padding: 1.5rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            padding: 0.5rem;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-        }
-
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: #fff5f5;
-            border-bottom: 2px solid white;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-            padding: 5rem 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            color: #c2185b;
-            margin-bottom: 1rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #6d4c41;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            background: #c2185b;
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(194, 24, 91, 0.3);
-        }
-
-        .cta-button:hover {
-            background: #ad1457;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(194, 24, 91, 0.4);
-        }
-
-        .categories {
-            padding: 4rem 0;
-            background: white;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            color: #c2185b;
-            margin-bottom: 3rem;
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .category-card {
-            background: linear-gradient(135deg, #fff 0%, #fce4ec 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            cursor: pointer;
-        }
-
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(194, 24, 91, 0.15);
-        }
-
-        .category-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .category-card h3 {
-            color: #c2185b;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .category-card p {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .blog {
-            padding: 4rem 0;
-            background: #fafafa;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .blog-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-        }
-
-        .blog-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #d4a5a5 0%, #f8bbd0 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-        }
-
-        .blog-content {
-            padding: 1.5rem;
-        }
-
-        .blog-content h3 {
-            color: #c2185b;
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-content p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .read-more {
-            color: #c2185b;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .read-more:hover {
-            color: #ad1457;
-            text-decoration: underline;
-        }
-
-        .lessons-intro {
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-            padding: 3rem 0;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .lessons-intro h1 {
-            color: #c2185b;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .lesson-item {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-        }
-
-        .lesson-item:hover {
-            transform: translateX(-5px);
-            box-shadow: 0 8px 20px rgba(194, 24, 91, 0.15);
-        }
-
-        .lesson-header {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .lesson-number {
-            background: #c2185b;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        .lesson-item h3 {
-            color: #c2185b;
-            font-size: 1.5rem;
-        }
-
-        .lesson-item p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .lesson-meta {
-            display: flex;
-            gap: 2rem;
-            color: #999;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-section {
-            padding: 4rem 0;
-        }
-
-        .contact-intro {
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-            padding: 3rem 0;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .contact-intro h1 {
-            color: #c2185b;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            color: #c2185b;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #f8bbd0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border 0.3s;
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #c2185b;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            background: #c2185b;
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: #ad1457;
-            transform: translateY(-2px);
-        }
-
-        .contact-info {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        }
-
-        .contact-info h3 {
-            color: #c2185b;
-            margin-bottom: 1.5rem;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: #fce4ec;
-            border-radius: 8px;
-        }
-
-        .info-icon {
-            font-size: 2rem;
-        }
-
-        .info-text h4 {
-            color: #c2185b;
-            margin-bottom: 0.3rem;
-        }
-
-        .info-text p {
-            color: #666;
-        }
-
-        footer {
-            background: #d4a5a5;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 3rem;
-        }
-
-        .success-message {
-            background: #4caf50;
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: none;
-            animation: slideDown 0.3s;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-menu {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                gap: 0.5rem;
-                margin-top: 1rem;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .logo {
-                font-size: 1.5rem;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-
-            .categories-grid,
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .lesson-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            nav {
-                flex-direction: column;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إبرة وفن - منصة تعليمية للخياطة</title>
+<style>
+/* ===== إعدادات أساسية ===== */
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif;}
+body{background:#fff7f8;color:#333;line-height:1.6;scroll-behavior:smooth;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+/* ===== الهيدر ===== */
+header{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:#fbe8ec;box-shadow:0 2px 5px rgba(0,0,0,0.05);position:sticky;top:0;z-index:1000;}
+.logo{font-size:1.8rem;font-weight:bold;color:#d77fa1;}
+nav ul{display:flex;list-style:none;gap:1.5rem;}
+nav ul li a{font-weight:500;transition:color 0.3s;}
+nav ul li a:hover{color:#c0658b;}
+/* ===== Hero ===== */
+.hero{text-align:center;padding:4rem 1rem;background:#fff0f3;}
+.hero h1{font-size:2.5rem;color:#d77fa1;margin-bottom:1rem;opacity:0;transform:translateY(50px);transition:all 0.8s ease-out;}
+.hero p{font-size:1.1rem;margin-bottom:2rem;opacity:0;transform:translateY(50px);transition:all 0.8s ease-out 0.2s;}
+.hero button{padding:.8rem 2rem;background:#d77fa1;color:#fff;border:none;border-radius:25px;font-size:1rem;cursor:pointer;transition:background 0.3s;}
+.hero button:hover{background:#c0658b;}
+/* ===== Progress Tracker ===== */
+.progress-container{padding:1rem 2rem;background:#fff0f3;display:flex;gap:1rem;flex-wrap:wrap;}
+.progress-step{flex:1;min-width:80px;text-align:center;padding:.5rem;background:#fbe8ec;border-radius:10px;transition:all 0.3s;}
+.progress-step.active{background:#d77fa1;color:#fff;font-weight:bold;}
+/* ===== Categories ===== */
+.categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;padding:2rem;}
+.category-card{background:#fff;border-radius:15px;padding:2rem 1rem;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.05);transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;opacity:0;transform:translateY(50px);}
+.category-card:hover{transform:translateY(-5px);box-shadow:0 6px 15px rgba(0,0,0,0.1);}
+.category-card h3{color:#d77fa1;margin-bottom:.5rem;font-size:1.2rem;}
+.category-card p{font-size:.95rem;color:#555;}
+/* ===== Blog ===== */
+.blog{padding:3rem 2rem;background:#fff7f8;}
+.blog h2{text-align:center;color:#d77fa1;margin-bottom:2rem;font-size:2rem;opacity:0;transform:translateY(50px);transition:all 0.8s ease-out;}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+.blog-card{background:#fff;border-radius:15px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,0.05);cursor:pointer;opacity:0;transform:translateY(50px);transition:all 0.6s ease-out;}
+.blog-card:hover{transform:translateY(-5px);box-shadow:0 6px 15px rgba(0,0,0,0.1);}
+.blog-card img{width:100%;height:150px;object-fit:cover;}
+.blog-card-content{padding:1rem;}
+.blog-card-content h3{color:#d77fa1;margin-bottom:.5rem;}
+.blog-card-content p{font-size:.9rem;color:#555;}
+/* ===== Modal ===== */
+.modal{display:none;position:fixed;z-index:2000;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.6);}
+.modal-content{background:#fff;margin:5% auto;padding:2rem;border-radius:15px;max-width:500px;position:relative;}
+.close{position:absolute;top:10px;left:15px;font-size:1.5rem;cursor:pointer;color:#d77fa1;}
+/* ===== Footer ===== */
+footer{text-align:center;padding:2rem;background:#fbe8ec;color:#d77fa1;margin-top:2rem;}
+/* ===== Responsive ===== */
+@media(max-width:768px){header{flex-direction:column;gap:1rem}.hero h1{font-size:2rem}.hero button{width:80%;}}
+/* ===== Animations ===== */
+.show{opacity:1;transform:translateY(0);}
+</style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div class="logo" onclick="showPage('home')">✨ إبرة وفن ✨</div>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a onclick="showPage('home')" class="nav-link active">الرئيسية</a></li>
-                <li><a onclick="showPage('lessons')" class="nav-link">الدروس</a></li>
-                <li><a onclick="showPage('blog')" class="nav-link">المدونة</a></li>
-                <li><a onclick="showPage('contact')" class="nav-link">تواصل معنا</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <div id="home" class="page active">
-        <section class="hero">
-            <div class="container">
-                <h1>اكتشفي عالم الخياطة والتفصيل</h1>
-                <p>تعلمي فن الخياطة من البداية حتى الاحتراف مع دروس عربية شاملة ومبسطة</p>
-                <button class="cta-button" onclick="showPage('lessons')">ابدئي التعلم الآن</button>
-            </div>
-        </section>
+<header>
+    <div class="logo">إبرة وفن</div>
+    <nav>
+        <ul>
+            <li><a href="#categories">الدروس</a></li>
+            <li><a href="#blog">مقالات</a></li>
+            <li><a href="#contact">تواصل معنا</a></li>
+        </ul>
+    </nav>
+</header>
 
-        <section class="categories">
-            <div class="container">
-                <h2 class="section-title">اختاري مسارك التعليمي</h2>
-                <div class="categories-grid">
-                    <div class="category-card" onclick="showPage('lessons')">
-                        <div class="category-icon">🧵</div>
-                        <h3>أساسيات الخياطة</h3>
-                        <p>ابدئي رحلتك بتعلم الأساسيات الضرورية: كيفية استخدام ماكينة الخياطة، أنواع الغرز، واختيار الأقمشة المناسبة</p>
-                        <button class="cta-button" style="margin-top: 1rem; padding: 0.7rem 1.5rem; font-size: 0.9rem;">استكشفي الدروس</button>
-                    </div>
-                    
-                    <div class="category-card" onclick="showPage('lessons')">
-                        <div class="category-icon">👗</div>
-                        <h3>فن التفصيل</h3>
-                        <p>تعلمي كيفية تفصيل الملابس بطريقة احترافية، من أخذ المقاسات الدقيقة إلى التشطيبات النهائية الأنيقة</p>
-                        <button class="cta-button" style="margin-top: 1rem; padding: 0.7rem 1.5rem; font-size: 0.9rem;">استكشفي الدروس</button>
-                    </div>
-                    
-                    <div class="category-card" onclick="showPage('lessons')">
-                        <div class="category-icon">📐</div>
-                        <h3>الباترونات والتصاميم</h3>
-                        <p>أتقني فن رسم الباترونات وتعديلها، وتعلمي كيف تحولين أفكارك الإبداعية إلى تصاميم واقعية رائعة</p>
-                        <button class="cta-button" style="margin-top: 1rem; padding: 0.7rem 1.5rem; font-size: 0.9rem;">استكشفي الدروس</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="hero">
+    <h1>تعلمي الخياطة والتفصيل بخطوات سهلة</h1>
+    <p>ابدئي رحلتك الإبداعية مع إبرة وفن وتعلمي فنون التفصيل خطوة بخطوة</p>
+    <button onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'});">ابدئي التعلم</button>
+</section>
+
+<div class="progress-container" id="progress">
+    <div class="progress-step active" data-step="1">أساسيات</div>
+    <div class="progress-step" data-step="2">تفصيل</div>
+    <div class="progress-step" data-step="3">باترونات</div>
+</div>
+
+<section class="categories" id="categories">
+    <div class="category-card" data-step="1" onclick="openModal('أساسيات الخياطة','تعلمي أدوات الخياطة، أنواع الأقمشة، والخياطة اليدوية والآلية. خطوات عملية للبدء.')">
+        <h3>أساسيات الخياطة</h3>
+        <p>تعلمي أدوات الخياطة وأنواع الأقمشة.</p>
     </div>
+    <div class="category-card" data-step="2" onclick="openModal('فن التفصيل','كيفية تفصيل الملابس حسب المقاسات والتصاميم المختلفة مع خطوات عملية مبسطة.')">
+        <h3>فن التفصيل</h3>
+        <p>تفصيل الملابس حسب المقاسات المختلفة.</p>
+    </div>
+    <div class="category-card" data-step="3" onclick="openModal('باترونات','تعلمي رسم الباترونات واستخدامها لصنع قطع مميزة، مع أمثلة جاهزة للتطبيق.')">
+        <h3>باترونات</h3>
+        <p>رسم الباترونات وصنع قطع مميزة.</p>
+    </div>
+</section>
 
-    <div id="lessons" class="page">
-        <div class="lessons-intro">
-            <div class="container">
-                <h1>دروس الخياطة والتفصيل</h1>
-                <p style="color: #6d4c41; font-size: 1.1rem;">دروس تفصيلية من المستوى المبتدئ حتى الاحتراف</p>
+<section class="blog" id="blog">
+    <h2>مقالات تعليمية</h2>
+    <div class="blog-grid">
+        <div class="blog-card" onclick="openModal('اختيار القماش المناسب','تعلمي كيفية اختيار القماش الأمثل لكل تصميم وللمناسبات المختلفة، مع نصائح عملية.')">
+            <img src="https://via.placeholder.com/300x150" alt="مقال1">
+            <div class="blog-card-content">
+                <h3>اختيار القماش المناسب</h3>
+                <p>كيفية اختيار القماش الأمثل لكل تصميم.</p>
             </div>
         </div>
-
-        <div class="container">
-            <h2 class="section-title">المستوى الأول: الأساسيات</h2>
-            
-            <div class="lesson-item">
-                <div class="lesson-header">
-                    <div class="lesson-number">1</div>
-                    <h3>مقدمة في عالم الخياطة</h3>
-                </div>
-                <p>تعرفي على الأدوات الأساسية التي تحتاجينها للبدء، وكيفية اختيار ماكينة الخياطة المناسبة لمستواك واحتياجاتك</p>
-                <div class="lesson-meta">
-                    <span>⏱️ المدة: 25 دقيقة</span>
-                    <span>📊 المستوى: مبتدئ</span>
-                    <span>✅ عملي ونظري</span>
-                </div>
+        <div class="blog-card" onclick="openModal('أدوات الخياطة الأساسية','دليل شامل لأدوات الخياطة التي تحتاجينها للبدء في مشاريعك بشكل احترافي.')">
+            <img src="https://via.placeholder.com/300x150" alt="مقال2">
+            <div class="blog-card-content">
+                <h3>أدوات الخياطة الأساسية</h3>
+                <p>دليل لأدوات الخياطة الأساسية.</p>
             </div>
-
-            <div class="lesson-item">
-                <div class="lesson-header">
-                    <div class="lesson-number">2</div>
-                    <h3>التعرف على ماكينة الخياطة</h3>
-                </div>
-                <p>شرح تفصيلي لأجزاء الماكينة، كيفية تشغيلها، ضبط التوتر، وتعلم الغرز الأساسية المستقيمة والمتعرجة</p>
-                <div class="lesson-meta">
-                    <span>⏱️ المدة: 35 دقيقة</span>
-                    <span>📊 المستوى: مبتدئ</span>
-                    <span>✅ عملي</span>
-                </div>
-            </div>
-
-            <div class="lesson-item">
-                <div class="lesson-header">
-                    <div class="lesson-number">3</div>
-                    <h3>أنواع الأقمشة واستخداماتها</h3>
-                </div>
-                <p>دليل شامل لأنواع الأقمشة المختلفة: القطن، الحرير، الصوف، الكتان وغيرها، ومتى تستخدمين كل نوع</p>
-                <div class="lesson-meta">
-                    <span>⏱️ المدة: 30 دقيقة</span>
-                    <span>📊 المستوى: مبتدئ</span>
-                    <span>✅ نظري</span>
-                </div>
-            </div>
-
-            <h2 class="section-title" style="margin-top: 3rem;">المستوى الثاني: التفصيل</h2>
-
-            <div class="lesson-item">
-                <div class="lesson-header">
-                    <div class="lesson-number">4</div>
-                    <h3>أخذ المقاسات بدقة</h3>
-                </div>
-                <p>تعلمي كيف تأخذين المقاسات الصحيحة للجسم بطريقة احترافية، مع جدول المقاسات القياسية والخاصة</p>
-                <div class="lesson-meta">
-                    <span>⏱️ المدة: 40 دقيقة</span>
-                    <span>📊 المستوى: متوسط</span>
-                    <span>✅ عملي ونظري</span>
-                </div>
-            </div>
-
-            <div class="lesson-item">
-                <div class="lesson-header">
-                    <div class="lesson-number">5</div>
-                    <h3>قراءة وتطبيق الباترونات</h3>
-                </div>
-                <p>فهم رموز الباترون، كيفية نقله على القماش، وطريقة قص القماش بشكل صحيح لتجنب الأخطاء الشائعة</p>
-                <div class="lesson-meta">
-                    <span>⏱️ المدة: 50 دقيقة</span>
-                    <span>📊 المستوى: متوسط</span>
-                    <span>✅ عملي</span>
-                </div>
-            </div>
-
-            <div class="lesson-item">
-                <div class="lesson-header">
-                    <div class="lesson-number">6</div>
-                    <h3>مشروعك الأول: خياطة تنورة بسيطة</h3>
-                </div>
-                <p>مشروع عملي متكامل لخياطة تنورة أنيقة من البداية حتى النهاية، مع جميع خطوات التشطيب الاحترافي</p>
-                <div class="lesson-meta">
-                    <span>⏱️ المدة: ساعة و 30 دقيقة</span>
-                    <span>📊 المستوى: متوسط</span>
-                    <span>✅ مشروع عملي</span>
-                </div>
+        </div>
+        <div class="blog-card" onclick="openModal('نصائح لتفصيل الملابس','طرق لضبط المقاسات بدقة والحصول على تصميم احترافي خطوة بخطوة.')">
+            <img src="https://via.placeholder.com/300x150" alt="مقال3">
+            <div class="blog-card-content">
+                <h3>نصائح لتفصيل الملابس</h3>
+                <p>طرق لضبط المقاسات بدقة.</p>
             </div>
         </div>
     </div>
+</section>
 
-    <div id="blog" class="page">
-        <div class="lessons-intro">
-            <div class="container">
-                <h1>مدونة إبرة وفن</h1>
-                <p style="color: #6d4c41; font-size: 1.1rem;">نصائح وإلهام ومقالات تعليمية</p>
-            </div>
-        </div>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3 id="modal-title"></h3>
+        <p id="modal-content"></p>
+    </div>
+</div>
 
-        <section class="blog">
-            <div class="container">
-                <div class="blog-grid">
-                    <div class="blog-card">
-                        <div class="blog-image">✂️</div>
-                        <div class="blog-content">
-                            <h3>أدوات الخياطة الأساسية للمبتدئات</h3>
-                            <p>دليل شامل لأهم الأدوات التي تحتاجينها للبدء في تعلم الخياطة بثقة واح
+<footer id="contact">
+    &copy; 2026 إبرة وفن. جميع الحقوق محفوظة.
+</footer>
+
+<script>
+// Scroll Animations
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add('show');}
+    });
+},{threshold:0.1});
+document.querySelectorAll('.hero h1,.hero p,.category-card,.blog h2,.blog-card').forEach(el=>observer.observe(el));
+
+// Modal
+function openModal(title,content){
+    document.getElementById('modal-title').innerText=title;
+    document.getElementById('modal-content').innerText=content;
+    document.getElementById('modal').style.display='block';
+    updateProgress(title);
+}
+function closeModal(){document.getElementById('modal').style.display='none';}
+window.onclick=function(e){if(e.target===document.getElementById('modal')){closeModal();}}
+
+// Progress Tracker
+function updateProgress(title){
+    const steps=document.querySelectorAll('.progress-step');
+    steps.forEach(step=>step.classList.remove('active'));
+    if(title.includes('أساسيات')){steps[0].classList.add('active');}
+    else if(title.includes('تفصيل')){steps[1].classList.add('active');}
+    else if(title.includes('باترونات')){steps[2].classList.add('active');}
+}
+</script>
+</body>
+</html>
